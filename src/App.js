@@ -6,7 +6,9 @@ function App() {
   function handleClick(e) {
     setResult((prevResult) => {
       console.log('prevresult', prevResult)
-      return prevResult.concat(e.target.name)
+      let result_opera = testStringhave2sign(prevResult.concat(e.target.name))
+      console.log(result_opera)
+      return result_opera
     })
   }
   function clearscreen() {
@@ -16,12 +18,33 @@ function App() {
     setResult(result.slice(0, result.length - 1))
 
   }
+
   function handleResult() {
     console.log(eval(result))
 
     setResult(eval(result).toString())
   }
-  console.log(result)
+  const arrspecial = ['/', '*', '-', '+', '.']
+
+
+  function testStringhave2sign(string) {
+    // for(let i = 0; i < string.length; i++) {
+    //   if(arrspecial.includes(string[i]) && arrspecial.includes(string[i+1])) {
+    //     return string.slice(0,i)+
+    //   }
+    // }
+    if (arrspecial.includes(string[string.length - 1]) &&
+      arrspecial.includes(string[string.length - 2])) {
+      console.log(string.slice(0, string.length - 2) + string.slice(-1))
+      return string.slice(0, string.length - 2) + string.slice(-1)
+    }
+    else {
+      return string
+    }
+
+  }
+  testStringhave2sign('134*/')
+  // console.log(result)
   return (
     <div className="app-cacualator">
       <input type="text" value={result} />
